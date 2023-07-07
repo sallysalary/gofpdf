@@ -2267,7 +2267,7 @@ func (f *Fpdf) WriteLinkID(h float64, displayStr string, linkID int) {
 //
 // width indicates the width of the box the text will be drawn in. This is in
 // the unit of measure specified in New(). If it is set to 0, the bounding box
-//of the page will be taken (pageWidth - leftMargin - rightMargin).
+// of the page will be taken (pageWidth - leftMargin - rightMargin).
 //
 // lineHeight indicates the line height in the unit of measure specified in
 // New().
@@ -2522,6 +2522,11 @@ func (f *Fpdf) RegisterImageOptionsReader(imgName string, options ImageOptions, 
 	f.images[imgName] = info
 
 	return
+}
+
+func (f *Fpdf) RegisterExistingImage(imgName string, info *ImageInfoType) {
+	info.i = len(f.images) + 1
+	f.images[imgName] = info
 }
 
 // RegisterImage registers an image, adding it to the PDF file but not adding
